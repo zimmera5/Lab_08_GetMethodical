@@ -1,7 +1,7 @@
 import java.util.Scanner;
 public class SafeInput {
 
-public static String getNonZeroLenString(Scanner pipe, String prompt)
+    public static String getNonZeroLenString(Scanner pipe, String prompt)
 {
     String retString = "";  // Set this to zero length. Loop runs until it isn’t
     do
@@ -12,7 +12,7 @@ public static String getNonZeroLenString(Scanner pipe, String prompt)
 
     return retString;
 }
-public static int getInt(Scanner pipe, String prompt){ //this is setting the int steps for any main that uses getInt
+    public static int getInt(Scanner pipe, String prompt){ //this is setting the int steps for any main that uses getInt
 
     int retVal = 0;
     String trash = ""; //trash incorrect variables
@@ -32,7 +32,7 @@ public static int getInt(Scanner pipe, String prompt){ //this is setting the int
     }while(!done); //not done it will loop back
 
     return retVal;
-}
+    }
     public static double getDouble(Scanner pipe, String prompt){ //this is setting the double variable
 
         double retVal = 0;
@@ -41,7 +41,7 @@ public static int getInt(Scanner pipe, String prompt){ //this is setting the int
 
         do{
             System.out.println(prompt);
-            if(pipe.hasNextInt()){
+            if(pipe.hasNextDouble()){
                 retVal = pipe.nextDouble();
                 pipe.nextLine();
                 done = true;
@@ -51,6 +51,89 @@ public static int getInt(Scanner pipe, String prompt){ //this is setting the int
                 System.out.println("Not correct type: "+ trash);
             }
         }while(!done);
+
+        return retVal;
+    }
+    public static int getRangedInt(Scanner pipe, String prompt, int low, int high){ //this is setting the range variable
+
+        int retVal = 0;
+        String trash = "";
+        boolean done = false;
+
+        do{
+            System.out.println(prompt);
+            if(pipe.hasNextInt()){
+                retVal = pipe.nextInt();
+                pipe.nextLine();
+                done = true;
+            }
+            else{
+                trash = pipe.nextLine();
+                System.out.println("Not correct type: "+ trash);
+            }
+        }while(!done);
+
+        return retVal;
+    }
+    public static int getRangedDouble(Scanner pipe, String prompt, double low, double high){ //this is setting the range variable
+
+        double retVal = 0;
+        String trash = "";
+        boolean done = false;
+
+        do{
+            System.out.println(prompt);
+            if(pipe.hasNextDouble()){
+                retVal = pipe.nextDouble();
+                pipe.nextLine();
+                done = true;
+            }
+            else{
+                trash = pipe.nextLine();
+                System.out.println("Not correct type: "+ trash); //shows what was typed as tells them it is incorrect
+            }
+        }while(!done);
+
+        return retVal;
+    }
+    public static boolean getYNConfirm(Scanner pipe, String prompt){ //this is for Yes or No variable
+
+        boolean retVal = 0;
+        String trash = "";
+        double done = false;
+
+        do{
+            System.out.println(prompt);
+            if(pipe.hasNextBoolean()){
+                retVal = pipe.nextBoolean();
+                pipe.nextLine();
+                done = true;
+            }
+            else{
+                trash = pipe.nextLine();
+                System.out.println("Not correct type: "+ trash);
+            }
+        }while(!done);
+
+        return retVal;
+    }
+
+    public static String getRegExString(Scanner pipe, String prompt, String regExPattern){
+
+        String retVal = 0;
+        boolean gotAValue = false;
+
+        do{
+            System.out.print(prompt + ": "); //show the prompt
+                retVal= pipe.nextLine(); //input the data
+            if(retVal.matches(regExPattern)){ //this test and references String regExPattern
+                gotAValue = true;
+            }
+            else {
+                System.out.println("\nInvalid input: " + retVal); //Output incorrect variable
+            }
+
+        }while(!gotAValue);
 
         return retVal;
     }
