@@ -64,7 +64,8 @@ public class SafeInput {
             System.out.println(prompt);
             if(pipe.hasNextInt()){
                 retVal = pipe.nextInt();
-                pipe.nextLine();
+                pipe.nextInt();
+                if (retVal >= low && retVal <= high)
                 done = true;
             }
             else{
