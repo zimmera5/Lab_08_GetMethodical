@@ -94,18 +94,18 @@ public class SafeInput {
             }
         }while(!done);
 
-        return retVal;
+        return (int) retVal;
     }
     public static boolean getYNConfirm(Scanner pipe, String prompt){ //this is for Yes or No variable
 
-        boolean retVal = 0;
+        String retVal = "y/n";
         String trash = "";
-        double done = false;
+        boolean done = false;
 
         do{
             System.out.println(prompt);
             if(pipe.hasNextBoolean()){
-                retVal = pipe.nextBoolean();
+                retVal = String.valueOf(pipe.nextBoolean());
                 pipe.nextLine();
                 done = true;
             }
@@ -115,12 +115,12 @@ public class SafeInput {
             }
         }while(!done);
 
-        return retVal;
+        return retVal.isEmpty();
     }
 
     public static String getRegExString(Scanner pipe, String prompt, String regExPattern){
 
-        String retVal = 0;
+        String retVal = "";
         boolean gotAValue = false;
 
         do{
